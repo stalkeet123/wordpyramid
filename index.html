@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pyramid Solitaire | Automatic Redirect</title>
+    <title>Word Pyramid Solitaire | Official Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-green: #1a472a;
@@ -16,111 +17,85 @@
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-light);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             text-align: center;
         }
-        /* Yönlendirme Paneli */
-        #redirect-box {
-            display: none;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid var(--accent-gold);
-            padding: 15px;
-            margin: 20px auto;
-            border-radius: 10px;
-            max-width: 90%;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
         .hero {
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: radial-gradient(circle at center, #1a472a 0%, #0d2114 100%);
-            flex-grow: 1;
-        }
-        .game-icon {
-            font-size: 70px;
-            margin-bottom: 10px;
+            min-height: 80vh;
         }
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: var(--accent-gold);
             margin: 10px 0;
             text-transform: uppercase;
         }
-        /* Mobil Öncelikli Buton */
-        .cta-container {
-            margin: 30px 0;
+        #redirect-box {
+            display: none;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--accent-gold);
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 300px;
+            animation: pulse 2s infinite;
         }
-        .btn {
-            background: linear-gradient(135deg, var(--accent-gold), #f1c40f);
-            color: #000;
-            padding: 18px 40px;
-            border-radius: 50px;
+        /* Apple Store Stilinde Buton */
+        .app-store-btn {
+            background: #000;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 1.3rem;
-            display: inline-block;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #a6a6a6;
             transition: transform 0.2s;
+            margin-top: 20px;
         }
-        .btn:active { transform: scale(0.95); }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .app-store-btn i {
+            font-size: 30px;
+            margin-right: 15px;
         }
-        .info-card {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 12px;
+        .btn-text {
             text-align: left;
-            border-bottom: 3px solid var(--accent-gold);
+            line-height: 1.2;
         }
-        footer {
-            padding: 30px;
-            background: #050d08;
+        .btn-text .small { font-size: 10px; display: block; }
+        .btn-text .large { font-size: 19px; font-weight: 600; }
+
+        .android-counter {
+            margin-top: 50px;
             font-size: 0.8rem;
-            opacity: 0.7;
+            color: #555;
+            padding: 10px;
         }
+        footer { padding: 40px; background: #050d08; font-size: 0.8rem; opacity: 0.6; }
         footer a { color: var(--accent-gold); text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div class="game-icon">🃏</div>
-        <h1>Word Pyramid</h1>
-        <p>Classic Solitaire Meets Word Puzzles</p>
-
+        <div style="font-size: 60px; margin-bottom: 20px;">🃏</div>
+        <h1>Word Pyramid Solitaire</h1>
+        
         <div id="redirect-box">
-            Redirecting to App Store in <span id="countdown">3</span>...
+            iOS Detected! Redirecting in <span id="countdown">3</span>...
         </div>
 
-        <div class="cta-container">
-            <a href="https://apps.apple.com/app/id6758537960" class="btn" id="dl-btn">
-                PLAY NOW FREE
+        <div>
+            <a href="https://apps.apple.com/app/id6758537960" class="app-store-btn">
+                <i class="fa-brands fa-apple"></i>
+                <span class="btn-text">
+                    <span class="small">Download on the</span>
+                    <span class="large">App Store</span>
+                </span>
             </a>
         </div>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>Master the Pyramid</h3>
-                <p>Match word associations to clear the cards. Every level is 100% solvable!</p>
-            </div>
-            <div class="info-card">
-                <h3>Zen Experience</h3>
-                <p>No timers, no stress. Just you and the classic green felt atmosphere.</p>
-            </div>
+        <div class="android-counter" id="android-msg" style="display:none;">
+            🤖 Android user detected. Tracking visit...
         </div>
     </section>
 
@@ -135,27 +110,32 @@
 
     <script>
         const storeUrl = "https://apps.apple.com/app/id6758537960";
-        
-        // Cihaz Kontrolü (iOS tespiti)
-        function isIOS() {
-            return [
-                'iPad Simulator', 'iPhone Simulator', 'iPod Simulator',
-                'iPad', 'iPhone', 'iPod'
-            ].includes(navigator.platform)
-            || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // 1. Sayaç ve Takip Fonksiyonu
+        function logVisit(platform) {
+            console.log("Visit from: " + platform);
+            // Burada Firebase veya basit bir 'hit counter' API'sı kullanabilirsin.
+            // Şimdilik sadece konsola ve ekrana yazdırıyoruz.
+            if(platform === 'Android') {
+                document.getElementById('android-msg').style.display = 'block';
+            }
         }
 
-        if (isIOS()) {
+        // 2. Cihaz Kontrolü
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            logVisit('iOS');
             document.getElementById('redirect-box').style.display = 'block';
             let count = 3;
-            const timer = setInterval(() => {
+            setInterval(() => {
                 count--;
                 document.getElementById('countdown').textContent = count;
-                if (count <= 0) {
-                    clearInterval(timer);
-                    window.location.href = storeUrl;
-                }
+                if (count === 0) window.location.href = storeUrl;
             }, 1000);
+        } else if (/android/i.test(userAgent)) {
+            logVisit('Android');
+        } else {
+            logVisit('Desktop/Other');
         }
     </script>
 </body>
