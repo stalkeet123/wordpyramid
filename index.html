@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pyramid Solitaire | Official Store</title>
+    <title>Word Pyramid Solitaire | Official Site</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -17,88 +17,91 @@
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-light);
-            text-align: center;
+            line-height: 1.6;
         }
         .hero {
             padding: 60px 20px;
             background: radial-gradient(circle at center, #1a472a 0%, #0d2114 100%);
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
         }
-        h1 {
-            font-size: 2.8rem;
-            color: var(--accent-gold);
-            margin: 10px 0;
-            text-transform: uppercase;
-        }
-        #redirect-box {
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        h1 { font-size: 3rem; color: var(--accent-gold); margin: 10px 0; text-transform: uppercase; }
+        .tagline { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
+
+        /* Yönlendirme Kutusu */
+        #redirect-status {
             display: none;
-            background: rgba(212, 175, 55, 0.2);
-            border: 1px solid var(--accent-gold);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            width: 280px;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
-        /* App Store Butonu */
+
+        /* Apple Store Butonu */
         .app-store-btn {
             background: #000;
             color: white;
-            padding: 12px 28px;
+            padding: 12px 30px;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             border: 1.5px solid #666;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
-        .app-store-btn i { font-size: 35px; margin-right: 12px; }
+        .app-store-btn:hover { border-color: #fff; transform: translateY(-3px); }
+        .app-store-btn i { font-size: 35px; margin-right: 15px; }
         .btn-text { text-align: left; line-height: 1.1; }
         .btn-text .small { font-size: 11px; display: block; }
         .btn-text .large { font-size: 22px; font-weight: 600; }
 
-        /* Android Coming Soon Bölümü */
-        .android-section {
-            margin-top: 40px;
-            opacity: 0.8;
+        /* Oyun Özellikleri */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+            border-left: 4px solid var(--accent-gold);
+        }
+        .feature-card h3 { color: var(--accent-gold); margin-top: 0; }
+
+        /* Android & Counter */
         .android-badge {
-            background: rgba(61, 220, 132, 0.1);
-            color: #3ddc84;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
+            background: rgba(61, 220, 132, 0.1);
+            color: #3ddc84;
+            padding: 10px 20px;
+            border-radius: 30px;
             border: 1px solid #3ddc84;
+            margin-top: 20px;
         }
-        .android-badge i { margin-right: 8px; }
-
-        /* Gizli Sayaç Alanı */
-        .visitor-counter {
-            margin-top: 30px;
+        .visitor-stats {
+            margin-top: 50px;
             font-size: 0.7rem;
-            color: #333; /* Çok silik, kimse fark etmez */
-            letter-spacing: 1px;
+            color: #1a3a25; /* Çok gizli sayaç */
         }
 
-        footer { padding: 30px; background: #050d08; font-size: 0.8rem; opacity: 0.5; }
-        footer a { color: var(--accent-gold); text-decoration: none; margin: 0 10px; }
+        footer { padding: 40px; background: #050d08; text-align: center; font-size: 0.9rem; opacity: 0.6; }
+        footer a { color: var(--accent-gold); text-decoration: none; margin: 0 15px; }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div style="font-size: 60px; margin-bottom: 20px;">🃏</div>
+        <div style="font-size: 70px;">🃏</div>
         <h1>Word Pyramid</h1>
+        <p class="tagline">The Ultimate Blend of Solitaire and Word Puzzles</p>
         
-        <div id="redirect-box">
-            iOS Detected! Store opening in <span id="countdown">3</span>...
-        </div>
+        <p id="redirect-status">You are being redirected to the App Store in <span id="countdown">3</span>...</p>
 
         <a href="https://apps.apple.com/app/id6758537960" class="app-store-btn">
             <i class="fa-brands fa-apple"></i>
@@ -108,43 +111,56 @@
             </span>
         </a>
 
-        <div class="android-section">
-            <div class="android-badge">
-                <i class="fa-brands fa-android"></i>
-                Coming Soon to Google Play
-            </div>
-        </div>
-
-        <div class="visitor-counter">
-            SYS_REF: <span id="count">000</span>
+        <br>
+        <div class="android-badge">
+            <i class="fa-brands fa-android"></i>&nbsp; Coming Soon to Google Play
         </div>
     </section>
+
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🧠 How to Play</h3>
+                <p>Forget suits and numbers! Match <strong>Word Associations</strong> (like "Apple" & "Banana") to clear the pyramid. Every single level is <strong>100% solvable</strong> if you use the right strategy!</p>
+            </div>
+            <div class="feature-card">
+                <h3>💎 Game Features</h3>
+                <ul>
+                    <li><strong>Classic Aesthetic:</strong> Relaxing "Green Felt" card game atmosphere.</li>
+                    <li><strong>Brain Training:</strong> Thousands of levels from easy to Grandmaster.</li>
+                    <li><strong>Fair Play:</strong> No Pay-to-Win. Just logic and vocabulary.</li>
+                    <li><strong>Offline Ready:</strong> Play anywhere, anytime without internet.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="visitor-stats">
+        REF_ID: <span id="count">---</span>
+    </div>
 
     <footer>
         <p>&copy; 2026 Word Pyramid Solitaire</p>
         <p>
             <a href="mailto:stalkeetofficial@gmail.com">Support</a> | 
-            <a href="privacy-policy.html">Privacy</a> | 
+            <a href="privacy-policy.html">Privacy Policy</a> | 
             <a href="app-ads.txt">app-ads.txt</a>
         </p>
     </footer>
 
     <script>
         const storeUrl = "https://apps.apple.com/app/id6758537960";
-        const ua = navigator.userAgent.toLowerCase();
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
 
-        // 1. ÜCRETSİZ SAYAÇ SİSTEMİ (CountAPI)
-        // Bu kod her sayfa açıldığında 'wordpyramid_visits' anahtarını 1 artırır.
+        // Sayaç - CountAPI (Ziyaretçileri takip eder)
         fetch('https://api.countapi.xyz/hit/stalkeet123_wordpyramid/visits')
             .then(res => res.json())
-            .then(res => {
-                document.getElementById('count').innerHTML = res.value;
-            })
-            .catch(err => console.log("Counter hidden"));
+            .then(res => document.getElementById('count').innerHTML = res.value)
+            .catch(() => {});
 
-        // 2. iOS TESPİT VE YÖNLENDİRME
-        if (/iphone|ipad|ipod/.test(ua)) {
-            document.getElementById('redirect-box').style.display = 'block';
+        // Otomatik Yönlendirme (Sadece iOS için)
+        if (isIOS) {
+            document.getElementById('redirect-status').style.display = 'block';
             let count = 3;
             const timer = setInterval(() => {
                 count--;
