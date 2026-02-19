@@ -1,121 +1,175 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pyramid Solitaire </title>
+    <title>Word Pyramid Solitaire | Classic Cards Meet Word Puzzles</title>
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --bg-color: #f5f7fa;
-            --text-color: #2c3e50;
+            --primary-green: #1a472a; /* Classic Solitaire Green */
+            --accent-gold: #d4af37;
+            --bg-color: #0d2114;
+            --card-white: #ffffff;
+            --text-light: #f5f5f5;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-light);
             line-height: 1.6;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(13, 33, 20, 0.9)), url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
             text-align: center;
+            border-bottom: 4px solid var(--accent-gold);
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        header {
-            padding: 60px 0 20px;
+        .game-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
-            color: #333;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         .tagline {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.4rem;
+            font-style: italic;
             margin-bottom: 30px;
+            opacity: 0.9;
         }
-        .features {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin: 30px 0;
-            text-align: left;
-        }
-        .features h3 {
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        .download-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             margin-top: 40px;
         }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-gold);
+            text-align: left;
+        }
+        .card h3 {
+            color: var(--accent-gold);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 12px;
+        }
+        .download-area {
+            text-align: center;
+            padding: 60px 0;
+        }
         .btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 20px 45px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         .btn:hover {
-            transform: translateY(-2px);
-            background-color: #357abd;
+            transform: scale(1.05);
+            background-color: #f1c40f;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
         footer {
-            margin-top: 50px;
+            text-align: center;
+            padding: 40px 20px;
+            background: #050d08;
+            color: #777;
             font-size: 0.9rem;
-            color: #888;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
         }
         footer a {
-            color: #888;
+            color: var(--accent-gold);
+            text-decoration: none;
             margin: 0 10px;
+        }
+        .ads-link {
+            font-size: 11px;
+            margin-top: 20px;
+            display: block;
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
 
+    <section class="hero-section">
+        <div class="game-icon">🃏</div>
+        <h1>Word Pyramid Solitaire</h1>
+        <p class="tagline">Solitaire meets Word Games in this unique new puzzle!</p>
+        
+        <div class="download-area">
+            <a href="https://apps.apple.com/tr/app/word-pyramid-solitaire/id6758537960" class="btn">
+                DOWNLOAD ON APP STORE
+            </a>
+        </div>
+    </section>
+
     <div class="container">
-        <header>
-            <div style="font-size: 60px;">🀄️</div>
-            <h1>Word Pyramid Solitaire</h1>
-            <p class="tagline">Mahjong ve Solitaire mekaniklerinin kelime oyunuyla buluşması.</p>
-        </header>
+        <div class="grid">
+            <div class="card">
+                <h3>How to Play</h3>
+                <p>Instead of matching suits or numbers, you match <strong>Word Associations!</strong></p>
+                <ul>
+                    <li>Select two cards from the same category (e.g., "Apple" & "Banana").</li>
+                    <li>Clear the board to reveal cards underneath.</li>
+                    <li>Strategically uncover the pyramid and draw pile.</li>
+                    <li><strong>100% Solvable:</strong> Every level has a path to victory!</li>
+                </ul>
+            </div>
 
-        <div class="features">
-            <h3>Oyun Hakkında</h3>
-            <p>Word Pyramid Solitaire, klasik kelime oyunlarına yeni bir soluk getiriyor. Mahjong taş eşleştirme mekaniği ile Solitaire dizilimini birleştirdik.</p>
-            <ul>
-                <li>🧠 <strong>Zeka Geliştirici:</strong> Kelime hazineni zorlayan bulmacalar.</li>
-                <li>cubes <strong>3D Görünüm:</strong> Etkileyici piramit yapıları ve akıcı animasyonlar.</li>
-                <li>⚡️ <strong>Hızlı Oynanış:</strong> İster otobüste ister molada, hemen oyna.</li>
-            </ul>
+            <div class="card">
+                <h3>Game Features</h3>
+                <ul>
+                    <li><strong>Premium Aesthetic:</strong> Immerse yourself in the classic "Green Felt" atmosphere.</li>
+                    <li><strong>Thousands of Levels:</strong> From easy warm-ups to "Grandmaster" brain burners.</li>
+                    <li><strong>No Pay-to-Win:</strong> Just you, your logic, and your vocabulary.</li>
+                    <li><strong>Play Anywhere:</strong> Relaxing, offline-friendly gameplay.</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="download-buttons">
-            <a href="https://apps.apple.com/tr/app/word-pyramid-solitaire/id6758537960" class="btn">App Store'dan İndir</a>
-            
+        <div style="text-align: center; margin-top: 50px; opacity: 0.8;">
+            <p>Perfect for fans of Klondike, Spider Solitaire, Mahjong, and Word Search games!</p>
         </div>
-
-        <footer>
-            <p>&copy; 2026 Word Pyramid Solitaire. Tüm hakları saklıdır.</p>
-            <p>
-                <a href="stalkeetofficial@gmail.com">İletişim & Destek</a> | 
-                <a href="https://stalkeet123.github.io/wordpyramid/privacy-policy">Gizlilik Politikası</a>
-            </p>
-            <p style="font-size: 10px;"><a href="app-ads.txt">app-ads.txt</a></p>
-        </footer>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Word Pyramid Solitaire. All rights reserved.</p>
+        <p>
+            <a href="mailto:stalkeetofficial@gmail.com">Support</a> | 
+            <a href="https://stalkeet123.github.io/wordpyramid/privacy-policy">Privacy Policy</a>
+        </p>
+        <a href="app-ads.txt" class="ads-link">Authorized Digital Sellers (app-ads.txt)</a>
+    </footer>
 
 </body>
 </html>
