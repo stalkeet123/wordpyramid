@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pyramid Solitaire | Official Site</title>
+    <title>Word Pyramid Solitaire | Official Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -22,10 +22,14 @@
         .hero {
             padding: 60px 20px;
             background: radial-gradient(circle at center, #1a472a 0%, #0d2114 100%);
-            min-height: 80vh;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--accent-gold);
             margin: 10px 0;
             text-transform: uppercase;
@@ -35,42 +39,54 @@
             background: rgba(212, 175, 55, 0.2);
             border: 1px solid var(--accent-gold);
             padding: 15px;
-            margin: 20px auto;
-            border-radius: 10px;
-            max-width: 300px;
-            animation: pulse 2s infinite;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            width: 280px;
+            font-weight: bold;
         }
-        /* Apple Store Stilinde Buton */
+        /* App Store Butonu */
         .app-store-btn {
             background: #000;
             color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            border: 1px solid #a6a6a6;
-            transition: transform 0.2s;
-            margin-top: 20px;
+            border: 1.5px solid #666;
+            transition: all 0.2s ease;
         }
-        .app-store-btn i {
-            font-size: 30px;
-            margin-right: 15px;
-        }
-        .btn-text {
-            text-align: left;
-            line-height: 1.2;
-        }
-        .btn-text .small { font-size: 10px; display: block; }
-        .btn-text .large { font-size: 19px; font-weight: 600; }
+        .app-store-btn i { font-size: 35px; margin-right: 12px; }
+        .btn-text { text-align: left; line-height: 1.1; }
+        .btn-text .small { font-size: 11px; display: block; }
+        .btn-text .large { font-size: 22px; font-weight: 600; }
 
-        .android-counter {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #555;
-            padding: 10px;
+        /* Android Coming Soon Bölümü */
+        .android-section {
+            margin-top: 40px;
+            opacity: 0.8;
         }
-        footer { padding: 40px; background: #050d08; font-size: 0.8rem; opacity: 0.6; }
+        .android-badge {
+            background: rgba(61, 220, 132, 0.1);
+            color: #3ddc84;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #3ddc84;
+        }
+        .android-badge i { margin-right: 8px; }
+
+        /* Gizli Sayaç Alanı */
+        .visitor-counter {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: #333; /* Çok silik, kimse fark etmez */
+            letter-spacing: 1px;
+        }
+
+        footer { padding: 30px; background: #050d08; font-size: 0.8rem; opacity: 0.5; }
         footer a { color: var(--accent-gold); text-decoration: none; margin: 0 10px; }
     </style>
 </head>
@@ -78,24 +94,29 @@
 
     <section class="hero">
         <div style="font-size: 60px; margin-bottom: 20px;">🃏</div>
-        <h1>Word Pyramid Solitaire</h1>
+        <h1>Word Pyramid</h1>
         
         <div id="redirect-box">
-            iOS Detected! Redirecting in <span id="countdown">3</span>...
+            iOS Detected! Store opening in <span id="countdown">3</span>...
         </div>
 
-        <div>
-            <a href="https://apps.apple.com/app/id6758537960" class="app-store-btn">
-                <i class="fa-brands fa-apple"></i>
-                <span class="btn-text">
-                    <span class="small">Download on the</span>
-                    <span class="large">App Store</span>
-                </span>
-            </a>
+        <a href="https://apps.apple.com/app/id6758537960" class="app-store-btn">
+            <i class="fa-brands fa-apple"></i>
+            <span class="btn-text">
+                <span class="small">Download on the</span>
+                <span class="large">App Store</span>
+            </span>
+        </a>
+
+        <div class="android-section">
+            <div class="android-badge">
+                <i class="fa-brands fa-android"></i>
+                Coming Soon to Google Play
+            </div>
         </div>
 
-        <div class="android-counter" id="android-msg" style="display:none;">
-            🤖 Android user detected. Tracking visit...
+        <div class="visitor-counter">
+            SYS_REF: <span id="count">000</span>
         </div>
     </section>
 
@@ -110,32 +131,29 @@
 
     <script>
         const storeUrl = "https://apps.apple.com/app/id6758537960";
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const ua = navigator.userAgent.toLowerCase();
 
-        // 1. Sayaç ve Takip Fonksiyonu
-        function logVisit(platform) {
-            console.log("Visit from: " + platform);
-            // Burada Firebase veya basit bir 'hit counter' API'sı kullanabilirsin.
-            // Şimdilik sadece konsola ve ekrana yazdırıyoruz.
-            if(platform === 'Android') {
-                document.getElementById('android-msg').style.display = 'block';
-            }
-        }
+        // 1. ÜCRETSİZ SAYAÇ SİSTEMİ (CountAPI)
+        // Bu kod her sayfa açıldığında 'wordpyramid_visits' anahtarını 1 artırır.
+        fetch('https://api.countapi.xyz/hit/stalkeet123_wordpyramid/visits')
+            .then(res => res.json())
+            .then(res => {
+                document.getElementById('count').innerHTML = res.value;
+            })
+            .catch(err => console.log("Counter hidden"));
 
-        // 2. Cihaz Kontrolü
-        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            logVisit('iOS');
+        // 2. iOS TESPİT VE YÖNLENDİRME
+        if (/iphone|ipad|ipod/.test(ua)) {
             document.getElementById('redirect-box').style.display = 'block';
             let count = 3;
-            setInterval(() => {
+            const timer = setInterval(() => {
                 count--;
                 document.getElementById('countdown').textContent = count;
-                if (count === 0) window.location.href = storeUrl;
+                if (count <= 0) {
+                    clearInterval(timer);
+                    window.location.href = storeUrl;
+                }
             }, 1000);
-        } else if (/android/i.test(userAgent)) {
-            logVisit('Android');
-        } else {
-            logVisit('Desktop/Other');
         }
     </script>
 </body>
