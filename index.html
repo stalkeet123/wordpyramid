@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Pyramid Solitaire | Official Site</title>
+    <title>Word Peaks: Golf Solitaire | Official Site</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-green: #1a472a;
+            --primary-green: #0d2114;
             --accent-gold: #d4af37;
-            --bg-color: #0d2114;
+            --bg-color: #050d08;
             --text-light: #f5f5f5;
         }
         body {
@@ -21,41 +21,51 @@
         }
         .hero {
             padding: 60px 20px;
-            background: radial-gradient(circle at center, #1a472a 0%, #0d2114 100%);
+            background: radial-gradient(circle at center, #11331c 0%, var(--bg-color) 100%);
             text-align: center;
             border-bottom: 2px solid var(--accent-gold);
         }
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
-        h1 { font-size: 3rem; color: var(--accent-gold); margin: 10px 0; text-transform: uppercase; }
-        .tagline { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
+        h1 { font-size: 3rem; color: var(--accent-gold); margin: 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .tagline { font-size: 1.2rem; opacity: 0.9; margin-bottom: 35px; }
 
         /* Yönlendirme Kutusu */
         #redirect-status {
             display: none;
             font-weight: 600;
             color: var(--accent-gold);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.1rem;
         }
 
-        /* Apple Store Butonu */
-        .app-store-btn {
+        /* Mağaza Butonları Grubu */
+        .store-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Mağaza Butonları */
+        .store-btn {
             background: #000;
             color: white;
-            padding: 12px 30px;
+            padding: 12px 28px;
             border-radius: 12px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            border: 1.5px solid #666;
+            border: 1.5px solid #444;
             transition: all 0.3s ease;
+            min-width: 200px;
         }
-        .app-store-btn:hover { border-color: #fff; transform: translateY(-3px); }
-        .app-store-btn i { font-size: 35px; margin-right: 15px; }
+        .store-btn:hover { border-color: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1); }
+        .store-btn i { font-size: 32px; margin-right: 15px; }
         .btn-text { text-align: left; line-height: 1.1; }
-        .btn-text .small { font-size: 11px; display: block; }
-        .btn-text .large { font-size: 22px; font-weight: 600; }
+        .btn-text .small { font-size: 11px; display: block; opacity: 0.8; }
+        .btn-text .large { font-size: 20px; font-weight: 600; }
 
         /* Oyun Özellikleri */
         .features-grid {
@@ -65,55 +75,52 @@
             margin: 40px 0;
         }
         .feature-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             padding: 25px;
             border-radius: 15px;
             text-align: left;
             border-left: 4px solid var(--accent-gold);
         }
         .feature-card h3 { color: var(--accent-gold); margin-top: 0; }
+        .feature-card ul { padding-left: 20px; margin: 10px 0 0 0; }
+        .feature-card li { margin-bottom: 8px; }
 
-        /* Android & Counter */
-        .android-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(61, 220, 132, 0.1);
-            color: #3ddc84;
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 1px solid #3ddc84;
-            margin-top: 20px;
-        }
         .visitor-stats {
             margin-top: 50px;
             font-size: 0.7rem;
-            color: #1a3a25; /* Çok gizli sayaç */
+            color: #112918; /* Gizli sayaç rengi */
+            text-align: center;
         }
 
-        footer { padding: 40px; background: #050d08; text-align: center; font-size: 0.9rem; opacity: 0.6; }
+        footer { padding: 40px; background: #020704; text-align: center; font-size: 0.9rem; opacity: 0.6; }
         footer a { color: var(--accent-gold); text-decoration: none; margin: 0 15px; }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div style="font-size: 70px;">🃏</div>
-        <h1>Word Pyramid</h1>
-        <p class="tagline">The Ultimate Blend of Solitaire and Word Puzzles</p>
+        <div style="font-size: 70px;">🏌️‍♂️</div>
+        <h1>Word Peaks</h1>
+        <p class="tagline">The Elegant Fusion of Golf Solitaire and Word Puzzles</p>
         
-        <p id="redirect-status">You are being redirected to the App Store in <span id="countdown">3</span>...</p>
+        <p id="redirect-status">You are being redirected to the Store in <span id="countdown">3</span>...</p>
 
-        <a href="https://apps.apple.com/app/id6758537960" class="app-store-btn">
-            <i class="fa-brands fa-apple"></i>
-            <span class="btn-text">
-                <span class="small">Download on the</span>
-                <span class="large">App Store</span>
-            </span>
-        </a>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/app/id6758537960" class="store-btn" id="apple-btn">
+                <i class="fa-brands fa-apple"></i>
+                <span class="btn-text">
+                    <span class="small">Download on the</span>
+                    <span class="large">App Store</span>
+                </span>
+            </a>
 
-        <br>
-        <div class="android-badge">
-            <i class="fa-brands fa-android"></i>&nbsp; Coming Soon to Google Play
+            <a href="https://play.google.com/store/apps/details?id=com.emir.squarrel&hl=tr" class="store-btn" id="android-btn">
+                <i class="fa-brands fa-google-play"></i>
+                <span class="btn-text">
+                    <span class="small">GET IT ON</span>
+                    <span class="large">Google Play</span>
+                </span>
+            </a>
         </div>
     </section>
 
@@ -121,15 +128,15 @@
         <div class="features-grid">
             <div class="feature-card">
                 <h3>🧠 How to Play</h3>
-                <p>Forget suits and numbers! Match <strong>Word Associations</strong> (like "Apple" & "Banana") to clear the pyramid. Every single level is <strong>100% solvable</strong> if you use the right strategy!</p>
+                <p>Clear the card stacks by finding words that are one step higher or lower than your current deck card. Master the <strong>TriPeaks logic</strong> mixed with vocabulary skills to clear the board and reach the peak!</p>
             </div>
             <div class="feature-card">
                 <h3>💎 Game Features</h3>
                 <ul>
-                    <li><strong>Classic Aesthetic:</strong> Relaxing "Green Felt" card game atmosphere.</li>
-                    <li><strong>Brain Training:</strong> Thousands of levels from easy to Grandmaster.</li>
-                    <li><strong>Fair Play:</strong> No Pay-to-Win. Just logic and vocabulary.</li>
-                    <li><strong>Offline Ready:</strong> Play anywhere, anytime without internet.</li>
+                    <li><strong>Premium Aesthetic:</strong> Relaxing and elegant "Green Felt" embossed table atmosphere.</li>
+                    <li><strong>Brain Training:</strong> Handcrafted levels that challenge your focus and vocabulary.</li>
+                    <li><strong>Fair & Pure:</strong> No pay-to-win walls. Just pure strategy, logic, and calm gameplay.</li>
+                    <li><strong>Play Anywhere:</strong> Fully optimized for offline play, whenever you need a zen break.</li>
                 </ul>
             </div>
         </div>
@@ -140,7 +147,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Word Pyramid Solitaire</p>
+        <p>&copy; 2026 Word Peaks: Golf Solitaire</p>
         <p>
             <a href="mailto:stalkeetofficial@gmail.com">Support</a> | 
             <a href="privacy-policy.html">Privacy Policy</a> | 
@@ -149,17 +156,23 @@
     </footer>
 
     <script>
-        const storeUrl = "https://apps.apple.com/app/id6758537960";
-        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const iosStoreUrl = "https://apps.apple.com/app/id6758537960";
+        const androidStoreUrl = "https://play.google.com/store/apps/details?id=com.emir.squarrel&hl=tr";
+        
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isIOS = /iphone|ipad|ipod/.test(userAgent);
+        const isAndroid = /android/.test(userAgent);
 
-        // Sayaç - CountAPI (Ziyaretçileri takip eder)
-        fetch('https://api.countapi.xyz/hit/stalkeet123_wordpyramid/visits')
+        // Visitor Hit Counter
+        fetch('https://api.countapi.xyz/hit/stalkeet123_wordpeaks/visits')
             .then(res => res.json())
             .then(res => document.getElementById('count').innerHTML = res.value)
             .catch(() => {});
 
-        // Otomatik Yönlendirme (Sadece iOS için)
-        if (isIOS) {
+        // Smart Smart Auto-Redirect System
+        if (isIOS || isAndroid) {
+            let targetUrl = isIOS ? iosStoreUrl : androidStoreUrl;
+            
             document.getElementById('redirect-status').style.display = 'block';
             let count = 3;
             const timer = setInterval(() => {
@@ -167,7 +180,7 @@
                 document.getElementById('countdown').textContent = count;
                 if (count <= 0) {
                     clearInterval(timer);
-                    window.location.href = storeUrl;
+                    window.location.href = targetUrl;
                 }
             }, 1000);
         }
